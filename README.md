@@ -1,5 +1,10 @@
 # PixelWrangler
 ---
+## Our Team
+- [Matai Cross](https://github.com/GMCRM)
+- [Mitchell Bower](https://github.com/mbower00)
+- [Star Balls](https://github.com/starb520)
+- [Luke Briggs](https://github.com/uplandwave)
 
 ## Padlet 
 [Things we should maybe do](https://padlet.com/dasagi1467/pixel-wrangler-qm7c8xmzm2zpgymn)

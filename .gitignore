@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 /1-ClassExampls
+
+.evn

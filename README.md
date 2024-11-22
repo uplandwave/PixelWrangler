@@ -10,6 +10,8 @@
 [Things we should maybe do](https://padlet.com/dasagi1467/pixel-wrangler-qm7c8xmzm2zpgymn)
 
 ---
+## Logo
+![Logo](./public/Pictures/boom.png)
 
 ### **Project Proposal: Movie Recommender Site**
 
@@ -47,6 +49,7 @@ We plan to use **OMDb API, IMDb API, TasteDive API, Watchmode API, JustWatch API
 ![login](./Public/Pictures/LogIn.png)
 
 #### **Colors/Typography/Specific Element Styling**
+![styleSheet](./public/Pictures/2.png)
 - **Color Scheme** - All white background with all text and elements black. Maybe some deep blues pops of color for action buttons.
 - **Typography** - Clean, modern fonts such as *Roboto* or *Montserrat* for readability.
 - **Specific Element Styling**:

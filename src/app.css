@@ -11,6 +11,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --text-color: #4f5259;
+  --Accent_1: #538ed1;
+  --Accent_2: #2f76cb;
+  --Accent_3: #5d6973;
+  --Background : #f0f0f0;
+  --blue-off-white: #f2f3f4;
 }
 
 a {
@@ -68,7 +75,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #f0f0f0;
   }
   a:hover {
     color: #747bff;

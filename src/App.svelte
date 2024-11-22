@@ -1,47 +1,43 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import { writable } from 'svelte/store';
+  import { route } from './stores';
+
+  import HomePage from './pages/HomePage.svelte';
+  import Search from './pages/Search.svelte';
+  import Favorites from './pages/Favorites.svelte';
+  import Login from './pages/Login.svelte';
+
+  import Header from './lib/Header.svelte';
+  import Footer from './lib/Footer.svelte';
+
+  // let route = "#home";
+  let params = {};
+  window.addEventListener("popstate", (e) =>{
+    const parts  = location.hash.split("?");
+    params = new URLSearchParams(parts[1])
+    console.log(e);
+    console.log(location);
+    // adding the $ is like saying route.set 
+    $route = parts[0];
+  });
 </script>
 
+<Header />
+
 <main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
 
   <div class="card">
-    <Counter />
+    {#if $route === '#home'}
+      <HomePage />
+    {:else if $route === '#favorites'}
+      <Favorites />
+    {:else if $route === '#search'}
+      <Search />
+    {:else if $route === '#login'}
+      <Login />
+    {/if}
   </div>
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
 </main>
 
-<style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
-</style>
+<Footer />

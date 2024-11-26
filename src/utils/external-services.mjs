@@ -9,7 +9,7 @@
 */
 
 // TODO: use .env, or paste in key for testing
-const API_KEY = ""
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 /** 
 * Gets title information.

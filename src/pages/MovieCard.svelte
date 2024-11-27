@@ -2,17 +2,19 @@
   import { onMount } from "svelte";
   import { getTitleDetails } from "../utils/external-services.mjs";
 
-  let movieId = "3173903";
+  export let movieId;
+
   let movieDetails = null;
 
   onMount(async () => {
     try {
       movieDetails = await getTitleDetails(movieId);
-      console.log(movieDetails);
+      // console.log(movieDetails);
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
   });
+
 </script>
 
 <div class="movie-card">
@@ -21,10 +23,14 @@
   <div class="movie-card-grid">
     <!-- Column 1 -->
     <div class="movie-card-column">
+      <div class="rating">
       <h2>Rating</h2>
-      <p>{movieDetails.user_rating}</p>
+      <p>{movieDetails.us_rating}</p>
+    </div>
+    <div class="year">
       <h2>Year</h2>
       <p>{movieDetails.year}</p>
+    </div>
     </div>
     <!-- Column 2 -->
     <div class="movie-card-column">
@@ -32,18 +38,22 @@
     </div>
     <!-- Column 3 -->
     <div class="movie-card-column">
+      <div class="genre">
       <h2>Genre</h2>
       <ul>
         {#each movieDetails.genre_names as genre}
           <li>{genre}</li>
         {/each}
       </ul>
+    </div>
+    <div class="watch">
       <h2>Watch</h2>
       <ul>
         {#each movieDetails.network_names as network}
           <li>{network}</li>
         {/each}
       </ul>
+    </div>
     </div>
   </div>
   <p>{ movieDetails.plot_overview }</p>
@@ -54,24 +64,26 @@
 
 <style>
 .movie-card {
-  max-width: 800px;
+  max-width: 425px;
+  height: 500px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 3rem 1rem 3rem 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: white;
 }
 
 .movie-card h1 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
   font-size: 40px;
 }
 
 .movie-card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-  gap: 1rem; /* Spacing between columns */
+  /* gap: 1rem;  */
 }
 
 .movie-card-column {

@@ -1,5 +1,5 @@
 <script>
-  import MovieCard from "./MovieCard.svelte";
+  import MovieCard from "./MovieSummaryCard.svelte";
   import MoviesList from "./MoviesList.svelte";
 </script>
 

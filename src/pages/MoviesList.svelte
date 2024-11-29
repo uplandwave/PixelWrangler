@@ -1,7 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { getListOfRandomMovies } from "../utils/external-services.mjs";
-  import MovieCard from "./MovieCard.svelte";
+  import MovieSummaryCard from "./MovieSummaryCard.svelte";
+  import MovieQuickViewCard from "./MovieQuickViewCard.svelte";
 
   let movieList = [];
   
@@ -15,12 +16,12 @@
   });
 </script>
 
-<h2>Movies</h2>
+<h2 class="movies">Movies</h2>
 {#if movieList}
   <ul class="movie-list">
     {#each movieList as movie}
       <li class="movie-item">
-        <MovieCard movieId={movie.id} />
+        <!-- <MovieQuickViewCard movieId={movie.id} /> -->
       </li>
     {/each}
   </ul>
@@ -30,6 +31,7 @@
 
 
 <style>
+    
     .movie-list {
       display: flex;
       flex-wrap: wrap;

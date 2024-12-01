@@ -9,7 +9,7 @@
   onMount(async () => {
     try {
       movieDetails = await getTitleDetails(movieId);
-      // console.log(movieDetails);
+      console.log(movieDetails);
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }

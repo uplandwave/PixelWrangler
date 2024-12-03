@@ -9,7 +9,7 @@
 */
 
 // TODO: use .env, or paste in key for testing
-const API_KEY = ""
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 /** 
 * Gets title information.
@@ -63,5 +63,15 @@ export async function getTitleDetailsAndSources(id) {
     return data
   } catch (error) {
     console.error("getTitleDetailsAndSources - " + error)
+  }
+}
+
+export async function getListOfRandomMovies() {
+  try {
+    const response = await fetch(`https://api.watchmode.com/v1/list-titles/?apiKey=${API_KEY}&source_ids=203,57`)
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error("getListOfRandomMovies - " + error)
   }
 }

@@ -166,7 +166,7 @@
 
 </script>
 <h1>This is the Home page</h1>
-
+<h2>New</h2>
 <MovieCarousel {movies} />
 
 

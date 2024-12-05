@@ -669,3 +669,4 @@
   <h2>Recommended</h2>
   <MovieCarousel movies={recomendedMovies} />
 <h2>Favorites</h2>
+<h4>Log in to see your favorites</h4>

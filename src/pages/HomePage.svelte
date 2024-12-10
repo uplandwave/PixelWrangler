@@ -1,9 +1,25 @@
-<script>
-  import MovieCard from "./MovieSummaryCard.svelte";
-  import MoviesList from "./MoviesList.svelte";
-</script>
+  <script>
+    import MovieCarousel from "../lib/MovieCarousel2.svelte";
+    import HeroCarousel from "../lib/HeroCarousel.svelte";
+    import movieData from "../movieData.json"
 
-<main>
-  <h1>This is the Home page</h1>
-  <!-- <MoviesList /> -->
-</main>
+    const { newMovies, recommendedMovies } = movieData;
+  
+  </script>
+  
+  <HeroCarousel />
+
+  <h2>New</h2>
+  <MovieCarousel movies={newMovies} />
+  <h2>Recommended</h2>
+  <MovieCarousel movies={recommendedMovies} />
+  <h2>Favorites</h2>
+  <h4>Log in to see your favorites</h4>
+
+<style>
+    h2 {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 25px;
+  }
+</style>

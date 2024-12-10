@@ -107,7 +107,7 @@
   max-width: 425px;
   height: 650px;
   margin: 0 auto;
-  padding: 3rem 1rem 3rem 1rem;
+  padding: 6rem 1rem 3rem 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: white;

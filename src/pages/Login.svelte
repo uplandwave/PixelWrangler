@@ -1,4 +1,5 @@
 <script>
+  import { route, user } from "../stores";
   import { supabase } from "../supabaseClient";
   let email = "";
   let password = "";
@@ -25,15 +26,37 @@ const login = async () => {
     } else {
       console.log('Login successful:', data);
       message = 'Login successful!';
+      user.set(data.user);
+
+      // clear form fields
+      email = "";
+      password = "";
+
+      // navigate to home page 
+      route.set("#home");
     }
   };
 
   const signUp = async () => {
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password
     });
-    message = error ? error.message : 'Sign-up successful! Check your email.';
+    if (error) {
+      console.error("Sign-up error:", error.message);
+      message = error.message;
+    } else {
+      console.log("Sign-up successful:", data);
+      message = "Sign-up successful! Check your email.";
+      user.set(data.user); // update Svelte store after sign-up
+
+      // clear form fields
+      email = "";
+      password = "";
+
+      // navigate to home page
+      route.set("#home");
+    }
   };
 </script>
 

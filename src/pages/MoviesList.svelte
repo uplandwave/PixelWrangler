@@ -22,6 +22,7 @@
     {#each movieList as movie}
       <li class="movie-item">
         <!-- <MovieQuickViewCard movieId={movie.id} /> -->
+         <!-- <MovieSummaryCard movieId={movie.id}/> -->
       </li>
     {/each}
   </ul>

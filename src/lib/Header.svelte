@@ -1,5 +1,7 @@
 <script>
     import { route } from "../stores";
+    import ToggleAuthButton from "../pages/ToggleAuthButton.svelte"; 
+
 </script>
 
 <header>
@@ -12,6 +14,8 @@
         <a href="#search" class={ $route == "#search" ? "active" : ""}><div class="underLine"></div>Search</a>
         <a href="#login" id="left" class={ $route == "#login" ? "active" : ""}><div class="underLine"></div>Login</a>
     </nav>
+
+    <ToggleAuthButton />
 </header>
 
 <style>

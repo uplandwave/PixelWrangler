@@ -1,10 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import { supabase } from "../supabaseClient";
-  import { user, route } from "../stores.js"; // user store for tracking login state
+  import { user, route } from "../stores.js"; 
   import { fetchFavoritesData } from "../utils/supabaseFetchers.mjs";
-  import MovieCard2 from "../lib/MovieCard2.svelte";
-  import MovieSummaryCard from "./MovieSummaryCard.svelte";
+  import MovieCard from "../lib/MovieCard.svelte";
 
   let favorites = [];
   let message = "";
@@ -53,20 +51,21 @@
 {:else if message}
   <p class="favorites-message">{message}</p>
 {:else}
-  <ul class="movie-list">
-    {#each favorites as movie}
-      <li class="movie-item">
-        <MovieCard2 {movie}/>
-      </li>
-    {/each}
-  </ul>
+  <h2>Favorites</h2>
+    <ul class="movie-list">
+      {#each favorites as movie}
+        <li class="movie-item">
+          <MovieCard {movie}/>
+        </li>
+      {/each}
+    </ul>
 {/if}
 </div>
 
 <style>
-    #favorites-container {
-        margin-top: 150px;
-    }
+  #favorites-container {
+      margin-top: 60px;
+  }
   .favorites-message,
   .login-message {
     text-align: center;
@@ -84,21 +83,24 @@
     cursor: pointer;
     font-size: 1rem;
   }
-
   .login-button:hover {
     background-color: var(--Accent_1);
   }
-
   .movie-list {
     display: flex;
     flex-wrap: wrap;
-    gap: .1rem;
+    gap: 10px;
     list-style: none;
     padding: 0;
+    padding-left: 20px;
   }
-
-  .movie-item {
-    flex: 1 1 calc(25% - 1rem); /* 4 movies per row */
+  /* .movie-item {
+    flex: 1 1 calc(15% - 2rem); 
     box-sizing: border-box;
+  } */
+  h2 {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 30px;
   }
 </style>

@@ -4,3 +4,6 @@ export const route = writable("#home");
 
 // store for the logged-in user
 export const user = writable(null);
+
+export const showModal = writable(null)
+export const modalMovieID = writable(null)

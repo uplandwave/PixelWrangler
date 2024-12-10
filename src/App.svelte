@@ -1,6 +1,6 @@
 <script>
   import { writable } from "svelte/store";
-  import { route } from "./stores";
+  import { route, showModal } from "./stores";
 
   import HomePage from "./pages/HomePage.svelte";
   import Search from "./pages/Search.svelte";
@@ -34,6 +34,10 @@
       <Search />
     {:else if $route === "#login"}
       <Login />
+    {/if}
+    <!-- svelte-ignore block_empty -->
+    {#if $showModal}
+      
     {/if}
   </div>
 </main>

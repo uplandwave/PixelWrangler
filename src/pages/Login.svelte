@@ -1,17 +1,24 @@
 <script>
   import { route, user } from "../stores";
   import { supabase } from "../supabaseClient";
+  import { onMount } from "svelte";
+
   let email = "";
   let password = "";
   let message = "";
 
-  //   const login = async () => {
-  //     const { error } = await supabase.auth.signInWithPassword({
-  //       email,
-  //       password
-  //     });
-  //     message = error ? error.message : 'Login successful!';
-  //   };
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error("Logout failed:", error.message);
+    } else {
+      console.log("Logout successful");
+      message = "You have been logged out.";
+      user.set(null);
+      route.set("#login");
+    }
+  };
 
   const login = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -46,8 +53,8 @@
       message = error.message;
     } else {
       console.log("Sign-up successful:", data);
-      message = "Sign-up successful! Check your email.";
-      user.set(data.user); // update Svelte store after sign-up
+      message = "Sign-up successful!";
+      user.set(data.user);
 
       // clear form fields
       email = "";
@@ -57,6 +64,12 @@
       route.set("#home");
     }
   };
+
+  onMount(() => {
+    if ($user) {
+      logout();
+    }
+  });
 </script>
 
 <!-- Login Form -->

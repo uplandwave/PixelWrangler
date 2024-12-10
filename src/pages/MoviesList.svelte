@@ -1,8 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { getListOfRandomMovies } from "../utils/external-services.mjs";
-  import MovieSummaryCard from "./MovieSummaryCard.svelte";
-  import MovieQuickViewCard from "./MovieQuickViewCard.svelte";
 
   let movieList = [];
   
@@ -32,7 +30,6 @@
 
 
 <style>
-    
     .movie-list {
       display: flex;
       flex-wrap: wrap;
@@ -40,9 +37,8 @@
       list-style: none;
       padding: 0;
     }
-  
     .movie-item {
       flex: 1 1 calc(33.333% - 1rem);
       box-sizing: border-box;
     }
-  </style>
+</style>

@@ -16,7 +16,7 @@
         right: 0;
         /* background-color: var(--Background); */
         background-color: var(--blue-off-white);
-        z-index: 1000;
+        z-index: 900;
         /* border-top: .5px solid var(--Accent_3); */
     }
 

@@ -16,21 +16,19 @@
   });
 </script>
 
-  {#if movieDetails}
-    <img
-      src={movieDetails.poster}
-      alt={movieDetails.title}
-      class="movie-quick-view-image"
-    />
-  {:else}
-    <p>Loading...</p>
-  {/if}
+{#if movieDetails}
+  <img
+    src={movieDetails.poster}
+    alt={movieDetails.title}
+    class="movie-quick-view-image"
+  />
+{:else}
+  <p>Loading...</p>
+{/if}
 
 <style>
-
-
   .movie-quick-view-image {
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
   }
 </style>

@@ -26,6 +26,7 @@
         right: 0;
         background-color: var(--Background);
         z-index: 1000;
+        padding-bottom: 15px;
     }
 
     .logo {

@@ -39,7 +39,7 @@
       padding: 0.5rem 1rem;
       border: none;
       border-radius: 5px;
-      background-color: var(--text-color);
+      background-color: var(--Accent_2);
       color: var(--Background);
       cursor: pointer;
     }

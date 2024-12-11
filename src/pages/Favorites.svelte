@@ -37,7 +37,6 @@
   onMount(fetchFavorites);
 
 </script>
-<!-- <MovieSummaryCard movieId={1307738}/> -->
 
 <div id="favorites-container">
 <!-- Display Content Based on State -->

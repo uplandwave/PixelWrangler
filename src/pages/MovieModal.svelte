@@ -11,44 +11,76 @@
   let movieDetails = null;
   let message = "";
 
+  let isFavorite = false;
+
+  async function isMovieInFavorites() {
+    if (!$user) return false;
+
+    const { data, error } = await supabase
+      .from("favorites")
+      .select("id")
+      .eq("uid", $user.id)
+      .eq("movie_id", movieId)
+      .single(); // single returns only one record or null
+
+    if (error) {
+      console.error("Error checking favorites:", error);
+      return false;
+    }
+
+    return data !== null; //return true if movie exists
+  }
+
   onMount(async () => {
     try {
       movieDetails = await getTitleDetails(movieId);
       // console.log(movieDetails);
+      isFavorite = await isMovieInFavorites();
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
   });
 
-  async function addToFavorites() {
-    // check if the user is logged in using the store
+    // toggle add/remove favorites
+    async function toggleFavorite() {
     if (!$user) {
-      message = "Please log in to add favorites.";
+      message = "Please log in to manage favorites.";
       return;
     }
 
     try {
-      const { error } = await supabase.from("favorites").insert({
-        uid: $user.id,
-        movie_id: movieDetails.id,
-        title: movieDetails.title,
-        release_year: movieDetails.year || null,
-        rating: movieDetails.us_rating || null,
-        genre_names: movieDetails.genre_names || null,
-        poster_url: movieDetails.poster || null,
-        network_names: movieDetails.network_names || null,
-        plot_overview: movieDetails.plot_overview || null,
-        poster_large_url: movieDetails.posterLarge || null,
-      });
+      if (isFavorite) {
+        // remove from favorites
+        const { error } = await supabase
+          .from("favorites")
+          .delete()
+          .eq("uid", $user.id)
+          .eq("movie_id", movieId);
 
-      if (error) {
-        console.error("Error ading favorite:", error);
-        message = "Could not add movie to favorites";
+        if (error) throw error;
+        isFavorite = false;
+        message = "Movie removed from favorites.";
       } else {
-        message = "Movie added to favorites";
+        // add to favorites
+        const { error } = await supabase.from("favorites").insert({
+          uid: $user.id,
+          movie_id: movieDetails.id,
+          title: movieDetails.title,
+          release_year: movieDetails.year || null,
+          rating: movieDetails.us_rating || null,
+          genre_names: movieDetails.genre_names || null,
+          poster_url: movieDetails.poster || null,
+          network_names: movieDetails.network_names || null,
+          plot_overview: movieDetails.plot_overview || null,
+          poster_large_url: movieDetails.posterLarge || null,
+        });
+
+        if (error) throw error;
+        isFavorite = true;
+        message = "Movie added to favorites.";
       }
     } catch (error) {
-      console.error("Unexpected error:", error);
+      console.error("Error updating favorites:", error);
       message = "An unexpected error occurred.";
     }
   }
@@ -105,13 +137,15 @@
 
       </div>
       <p>{movieDetails.plot_overview}</p>
-      <button on:click={addToFavorites} class="add-button"
-        >+ Add to Favorites</button
-      >
-      <p class="message">{message}</p>
-    {:else}
-      <p>Loading...</p>
-    {/if}
+
+    <!-- Toggle Button for Favorites -->
+    <button on:click={toggleFavorite} class="add-button">
+      {isFavorite ? "- Remove from Favorites" : "+ Add to Favorites"}
+    </button>
+    <p class="message">{message}</p>
+  {:else}
+    <p>Loading...</p>
+  {/if}
   </div>
 </div>
 

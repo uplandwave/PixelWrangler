@@ -3,6 +3,7 @@
   import { user, route } from "../stores.js"; 
   import { fetchFavoritesData } from "../utils/supabaseFetchers.mjs";
   import MovieCard from "../lib/MovieCard.svelte";
+  import MovieModal from "./MovieModal.svelte";
 
   let favorites = [];
   let message = "";
@@ -37,7 +38,6 @@
   onMount(fetchFavorites);
 
 </script>
-<!-- <MovieSummaryCard movieId={1307738}/> -->
 
 <div id="favorites-container">
 <!-- Display Content Based on State -->

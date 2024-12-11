@@ -34,15 +34,14 @@
   onMount(async () => {
     try {
       movieDetails = await getTitleDetails(movieId);
-      // console.log(movieDetails);
       isFavorite = await isMovieInFavorites();
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
   });
 
-    // toggle add/remove favorites
-    async function toggleFavorite() {
+  // toggle add/remove favorites
+  async function toggleFavorite() {
     if (!$user) {
       message = "Please log in to manage favorites.";
       return;
@@ -93,7 +92,6 @@
     {#if movieDetails}
       <h1>{movieDetails.title}</h1>
       <div class="movie-card-grid">
-
         <!-- Column 1 -->
         <div class="movie-card-column">
           <div class="rating">
@@ -134,18 +132,17 @@
             class="movie-image"
           />
         </div>
-
       </div>
       <p>{movieDetails.plot_overview}</p>
 
-    <!-- Toggle Button for Favorites -->
-    <button on:click={toggleFavorite} class="add-button">
-      {isFavorite ? "- Remove from Favorites" : "+ Add to Favorites"}
-    </button>
-    <p class="message">{message}</p>
-  {:else}
-    <p>Loading...</p>
-  {/if}
+      <!-- Toggle Button for Favorites -->
+      <button on:click={toggleFavorite} class="add-button">
+        {isFavorite ? "- Remove from Favorites" : "+ Add to Favorites"}
+      </button>
+      <p class="message">{message}</p>
+    {:else}
+      <p>Loading...</p>
+    {/if}
   </div>
 </div>
 

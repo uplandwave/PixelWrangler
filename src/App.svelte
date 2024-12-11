@@ -15,8 +15,6 @@
   window.addEventListener("popstate", (e) => {
     const parts = location.hash.split("?");
     params = new URLSearchParams(parts[1]);
-    console.log(e);
-    console.log(location);
     // adding the $ is like saying route.set
     $route = parts[0];
   });
@@ -36,9 +34,7 @@
       <Login />
     {/if}
     <!-- svelte-ignore block_empty -->
-    {#if $showModal}
-      
-    {/if}
+    {#if $showModal}{/if}
   </div>
 </main>
 

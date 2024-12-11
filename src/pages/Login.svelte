@@ -13,7 +13,7 @@
     if (error) {
       console.error("Logout failed:", error.message);
     } else {
-      console.log("Logout successful");
+      // console.log("Logout successful");
       message = "You have been logged out.";
       user.set(null);
       route.set("#login");
@@ -30,7 +30,7 @@
       console.log("Login error:", error.message);
       message = error.message;
     } else {
-      console.log("Login successful:", data);
+      // console.log("Login successful:", data);
       message = "Login successful!";
       user.set(data.user);
 
@@ -52,7 +52,7 @@
       console.error("Sign-up error:", error.message);
       message = error.message;
     } else {
-      console.log("Sign-up successful:", data);
+      // console.log("Sign-up successful:", data);
       message = "Sign-up successful!";
       user.set(data.user);
 

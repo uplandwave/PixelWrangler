@@ -13,7 +13,7 @@
     if (error) {
       console.error("Logout failed:", error.message);
     } else {
-      console.log("Logout successful");
+      // console.log("Logout successful");
       message = "You have been logged out.";
       user.set(null);
       route.set("#login");
@@ -30,7 +30,7 @@
       console.log("Login error:", error.message);
       message = error.message;
     } else {
-      console.log("Login successful:", data);
+      // console.log("Login successful:", data);
       message = "Login successful!";
       user.set(data.user);
 
@@ -52,7 +52,7 @@
       console.error("Sign-up error:", error.message);
       message = error.message;
     } else {
-      console.log("Sign-up successful:", data);
+      // console.log("Sign-up successful:", data);
       message = "Sign-up successful!";
       user.set(data.user);
 
@@ -104,18 +104,24 @@
   .login-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     height: 85vh;
     background-color: var(--Background); /* Optional background color */
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
   }
 
   .login-form {
+    margin-top: var(--margin-top-page-standard);
     width: 400px;
-    background-color: white; /* Optional background for the form */
+    background-color: var(--Background);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visuals */
+    box-shadow: 0 2px 8px var(--Shadow);
+    height: fit-content;
+  }
+
+  h2 {
+    margin-top: 0;
   }
 
   label {

@@ -66,6 +66,59 @@ export async function getTitleDetailsAndSources(id) {
   }
 }
 
+/** 
+* "Get a listing of recently released or coming soon releases on the major streaming services." 
+* @summary "Get a listing of recently released or coming soon releases on the major streaming services. 
+* Only major services and US releases dates included, however most of the major services 
+* (Netflix, Hulu, etc) release original content on the same days in all countries they support."
+* (quotes from: https://api.watchmode.com/docs/#releases)
+* @param {Number} limit "Set how many release dates to return, default is..." 12 (quote from: https://api.watchmode.com/docs/#releases)
+* @return {Promise}
+*/
+export async function getNewReleases(limit = 12) {
+  try {
+    const response = await fetch(`https://api.watchmode.com/v1/releases/?apiKey=${API_KEY}&limit=${limit}`)
+    const data = await response.json()
+    return data.releases
+  } catch (error) {
+    console.error("getNewReleases - " + error)
+  }
+}
+
+/** 
+* "Search for titles... by name or a partial name." 
+* @summary "Search for titles... by name or a partial name. Useful for building an 
+autocomplete search of titles..."
+* (quotes from: https://api.watchmode.com/docs/#autocomplete-search)
+* @param {String} value "The phrase to search for..." (quote from: https://api.watchmode.com/docs/#autocomplete-search)
+* @return {Promise}
+*/
+export async function autoSearch(value) {
+  try {
+    const response = await fetch(`https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${value}&search_type=2`)
+    const data = await response.json()
+    return data.results
+      // filter out those with null attribute {year} 
+      //    and "https://cdn.watchmode.com/posters/blank.gif" for {image_url}
+      .filter((r) => {
+        if (r.year === null) {
+          return false
+        } else if (r.image_url === "https://cdn.watchmode.com/posters/blank.gif") {
+          return false
+        } else {
+          return true
+        }
+      })
+      // add attributes {poster_url} and {title}
+      .map((r) => {
+        return { ...r, poster_url: r.image_url, title: r.name }
+      })
+  } catch (error) {
+    console.error("getNewReleases - " + error)
+  }
+}
+
+
 export async function getListOfRandomMovies() {
   try {
     const response = await fetch(`https://api.watchmode.com/v1/list-titles/?apiKey=${API_KEY}&source_ids=203,57`)

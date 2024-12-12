@@ -1,17 +1,15 @@
 <script>
-  import { onMount } from "svelte";
   import MovieCard from "./MovieCard.svelte";
-  import MovieSummaryCard from "../pages/MovieModal.svelte";
 
   export let movies = [];
   export let id = Math.random().toString(36).substr(2, 9); // Unique ID for each carousel
-  
+
   let isHovered = false;
 
   function scroll(direction) {
     const carousel = document.getElementById(`carousel-${id}`);
     const carouselContainer = document.getElementById(
-      `carousel-container-${id}`
+      `carousel-container-${id}`,
     );
     const scrollAmount = carouselContainer.clientWidth;
 
@@ -107,12 +105,20 @@
 
   .carousel-container::before {
     left: -10px;
-    background: linear-gradient(to right, #f2f3f4, rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      to right,
+      var(--Background),
+      rgba(255, 255, 255, 0)
+    );
   }
 
   .carousel-container::after {
     right: -10px;
-    background: linear-gradient(to left, #f2f3f4, rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      to left,
+      var(--Background),
+      rgba(255, 255, 255, 0)
+    );
   }
 
   button {
@@ -157,6 +163,6 @@
 
     /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;
-    scrollbar-width: none; 
+    scrollbar-width: none;
   }
 </style>

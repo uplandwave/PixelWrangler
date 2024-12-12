@@ -98,9 +98,16 @@ export async function autoSearch(value) {
     const response = await fetch(`https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${value}&search_type=2`)
     const data = await response.json()
     return data.results
-      // filter out those null attribute {year}
+      // filter out those with null attribute {year} 
+      //    and "https://cdn.watchmode.com/posters/blank.gif" for {image_url}
       .filter((r) => {
-        return r.year !== null
+        if (r.year === null) {
+          return false
+        } else if (r.image_url === "https://cdn.watchmode.com/posters/blank.gif") {
+          return false
+        } else {
+          return true
+        }
       })
       // add attributes {poster_url} and {title}
       .map((r) => {

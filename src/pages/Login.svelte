@@ -80,7 +80,7 @@
     class="login-form"
     on:submit|preventDefault={login}
   >
-    <h2>Login</h2>
+    <h2>Login/Create Account</h2>
     <label for="email">Email</label>
     <input type="text" name="email" id="email" bind:value={email} />
 

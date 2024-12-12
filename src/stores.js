@@ -7,4 +7,4 @@ export const user = writable(null);
 
 export const showModal = writable(null)
 export const modalMovieID = writable(null)
-export const favorites = writable(null)
+export const favorites = writable([])

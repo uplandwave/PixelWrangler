@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --margin-top-page-standard: 55px;
   /* in dark mode */
   --text-color: rgba(255, 255, 255, 0.87);
   --Accent_1: #538ed1;

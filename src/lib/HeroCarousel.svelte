@@ -59,7 +59,7 @@
     height: 400px;
     width: 100%;
     overflow: hidden;
-    margin-top: 55px;
+    margin-top: var(--margin-top-page-standard);
   }
 
   .slide {

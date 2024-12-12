@@ -104,18 +104,24 @@
   .login-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     height: 85vh;
     background-color: var(--Background); /* Optional background color */
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
   }
 
   .login-form {
+    margin-top: var(--margin-top-page-standard);
     width: 400px;
     background-color: var(--Background);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px var(--Shadow);
+    height: fit-content;
+  }
+
+  h2 {
+    margin-top: 0;
   }
 
   label {

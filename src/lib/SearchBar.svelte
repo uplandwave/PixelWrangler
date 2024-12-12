@@ -3,7 +3,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 
 <script>
-  export let onSubmit = (v) => {};
+  export let onSubmit;
 
   let value = "";
 
@@ -13,7 +13,7 @@
   }
 </script>
 
-<form on:submit={runOnSubmit}>
+<form on:submit|preventDefault={runOnSubmit}>
   <div class="input-container">
     <!-- from https://svelte.dev/docs/svelte/bind -->
     <input id="search-input" bind:value type="text" />
@@ -34,6 +34,7 @@
     border-radius: 12px;
     border: none;
     box-shadow: 0px 2px 8px var(--Shadow);
+    background-color: var(--Background);
   }
 
   .input-container {

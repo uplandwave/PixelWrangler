@@ -20,7 +20,7 @@
   --Accent_3: #5d6973;
   --Background: #242424;
   --blue-off-white: #2c3236;
-  --Shadow: rgba(1, 1, 1, .6);
+  --Shadow: rgba(1, 1, 1, .8);
 }
 
 @media (prefers-color-scheme: light) {
@@ -61,7 +61,7 @@ body {
   /* display: flex; */
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 h1 {

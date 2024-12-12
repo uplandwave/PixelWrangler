@@ -2,22 +2,33 @@
   import SearchBar from "../lib/SearchBar.svelte";
   import MoviesList from "../lib/MoviesList.svelte";
   import movieData from "../movieData.json";
+  import { autoSearch } from "../utils/external-services.mjs";
 
   const { newMovies } = movieData;
 
-  let movieList = newMovies;
+  let searchPromise;
+
+  function onSubmit(value) {
+    searchPromise = autoSearch(value);
+  }
 </script>
 
 <div class="search-page-container">
-  <SearchBar />
+  <SearchBar {onSubmit} />
+
   <div class="search-results-container">
-    <MoviesList {movieList} />
+    {#await searchPromise}
+      <p>Loading...</p>
+    {:then searchResults}
+      <MoviesList movieList={searchResults} />
+    {/await}
   </div>
 </div>
 
 <style>
   .search-page-container {
     margin-top: var(--margin-top-page-standard);
+    position: relative;
   }
   .search-results-container {
     max-width: 900px;

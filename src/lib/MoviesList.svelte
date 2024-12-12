@@ -2,6 +2,8 @@
   import MovieCard from "./MovieCard.svelte";
 
   export let movieList = [];
+
+  console.log(movieList);
 </script>
 
 <ul class="movie-list">

@@ -71,8 +71,8 @@ export async function getTitleDetailsAndSources(id) {
 * @summary "Get a listing of recently released or coming soon releases on the major streaming services. 
 * Only major services and US releases dates included, however most of the major services 
 * (Netflix, Hulu, etc) release original content on the same days in all countries they support."
-* (quotes from: https://api.watchmode.com/docs/#title)
-* @param {Number} limit "Set how many release dates to return, default is..." 12 (quote from: https://api.watchmode.com/docs/#title)
+* (quotes from: https://api.watchmode.com/docs/#releases)
+* @param {Number} limit "Set how many release dates to return, default is..." 12 (quote from: https://api.watchmode.com/docs/#releases)
 * @return {Promise}
 */
 export async function getNewReleases(limit = 12) {
@@ -84,6 +84,33 @@ export async function getNewReleases(limit = 12) {
     console.error("getNewReleases - " + error)
   }
 }
+
+/** 
+* "Search for titles... by name or a partial name." 
+* @summary "Search for titles... by name or a partial name. Useful for building an 
+autocomplete search of titles..."
+* (quotes from: https://api.watchmode.com/docs/#autocomplete-search)
+* @param {String} value "The phrase to search for..." (quote from: https://api.watchmode.com/docs/#autocomplete-search)
+* @return {Promise}
+*/
+export async function autoSearch(value) {
+  try {
+    const response = await fetch(`https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${value}&search_type=2`)
+    const data = await response.json()
+    return data.results
+      // filter out those null attribute {year}
+      .filter((r) => {
+        return r.year !== null
+      })
+      // add attributes {poster_url} and {title}
+      .map((r) => {
+        return { ...r, poster_url: r.image_url, title: r.name }
+      })
+  } catch (error) {
+    console.error("getNewReleases - " + error)
+  }
+}
+
 
 export async function getListOfRandomMovies() {
   try {

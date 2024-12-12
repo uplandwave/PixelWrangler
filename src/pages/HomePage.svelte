@@ -1,6 +1,7 @@
 <script>
   import MovieCarousel from "../lib/MovieCarousel.svelte";
   import HeroCarousel from "../lib/HeroCarousel.svelte";
+  import LoadingIndicator from "../lib/LoadingIndicator.svelte";
   import movieData from "../movieData.json";
   import { updateFavoritesStore } from "../utils/supabaseFetchers.mjs";
   import { getNewReleases } from "../utils/external-services.mjs";
@@ -28,10 +29,9 @@
 </script>
 
 <HeroCarousel />
-
 <h2>New or Coming Soon</h2>
 {#await newMoviesPromise}
-  Loading...
+  <LoadingIndicator />
 {:then newMovies}
   <MovieCarousel movies={newMovies} />
 {/await}
@@ -50,7 +50,7 @@
   </div>
 {:else}
   {#await favoritesPromise}
-    Loading...
+    <LoadingIndicator />
   {:then confirmation}
     {#if $favorites.length > 0}
       <!-- Favorites available -->

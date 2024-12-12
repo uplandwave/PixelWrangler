@@ -3,6 +3,7 @@
   import MoviesList from "../lib/MoviesList.svelte";
   import movieData from "../movieData.json";
   import { autoSearch } from "../utils/external-services.mjs";
+  import LoadingIndicator from "../lib/LoadingIndicator.svelte";
 
   const { newMovies } = movieData;
 
@@ -18,7 +19,7 @@
 
   <div class="search-results-container">
     {#await searchPromise}
-      <p>Loading...</p>
+      <LoadingIndicator />
     {:then searchResults}
       <MoviesList movieList={searchResults} />
     {/await}

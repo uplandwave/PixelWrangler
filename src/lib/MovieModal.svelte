@@ -5,6 +5,7 @@
   import { getTitleDetails } from "../utils/external-services.mjs";
   import { modalMovieID, showModal } from "../stores";
   import { updateFavoritesStore } from "../utils/supabaseFetchers.mjs";
+  import LoadingIndicator from "./LoadingIndicator.svelte";
 
   let movieDetails = null;
   let message = "";
@@ -159,7 +160,7 @@
         </button>
         <p class="message">{message}</p>
       {:else}
-        <p>Loading...</p>
+        <LoadingIndicator />
       {/if}
     </div>
   </div>

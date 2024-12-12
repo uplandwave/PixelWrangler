@@ -3,6 +3,7 @@
   import { user, route, favorites } from "../stores.js";
   import { updateFavoritesStore } from "../utils/supabaseFetchers.mjs";
   import MovieCard from "../lib/MovieCard.svelte";
+  import LoadingIndicator from "../lib/LoadingIndicator.svelte";
 
   let message = "";
   let favoritesPromise;
@@ -42,7 +43,9 @@
     </div>
   {:else}
     {#await favoritesPromise}
-      <p class="favorites-message">Loading...</p>
+      <div class="favorites-message">
+        <LoadingIndicator />
+      </div>
     {:then confirmation}
       {#if $favorites.length === 0}
         <p class="favorites-message">Start adding favorites!</p>

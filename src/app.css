@@ -4,20 +4,45 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-color);
+  background-color: var(--Background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --text-color: #4f5259;
+  /* in dark mode */
+  --text-color: rgba(255, 255, 255, 0.87);
   --Accent_1: #538ed1;
   --Accent_2: #2f76cb;
   --Accent_3: #5d6973;
-  --Background: #f0f0f0;
-  --blue-off-white: #f2f3f4;
+  --Background: #242424;
+  --blue-off-white: #2c3236;
+  --Shadow: rgba(1, 1, 1, .6);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* in light mode */
+    background-color: #f0f0f0;
+    /* --text-color: #4f5259; */
+    --text-color: #213547;
+    --Accent_1: #538ed1;
+    --Accent_2: #2f76cb;
+    --Accent_3: #5d6973;
+    --Background: #f0f0f0;
+    --blue-off-white: #f2f3f4;
+    --Shadow: rgba(0, 0, 0, .2);
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
 a {
@@ -73,19 +98,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #f0f0f0;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }

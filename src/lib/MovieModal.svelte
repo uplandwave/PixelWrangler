@@ -172,7 +172,7 @@
     position: absolute;
     right: 10px;
     top: 10px;
-    color: var(--Accent_3);
+    color: var(--text-color);
     cursor: pointer;
   }
 
@@ -198,7 +198,7 @@
   }
 
   .modal-content {
-    background-color: white;
+    background-color: var(--Background);
     border-radius: 8px;
     position: relative;
     padding: 2rem;

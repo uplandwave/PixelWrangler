@@ -105,12 +105,20 @@
 
   .carousel-container::before {
     left: -10px;
-    background: linear-gradient(to right, #f2f3f4, rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      to right,
+      var(--Background),
+      rgba(255, 255, 255, 0)
+    );
   }
 
   .carousel-container::after {
     right: -10px;
-    background: linear-gradient(to left, #f2f3f4, rgba(255, 255, 255, 0));
+    background: linear-gradient(
+      to left,
+      var(--Background),
+      rgba(255, 255, 255, 0)
+    );
   }
 
   button {

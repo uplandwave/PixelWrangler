@@ -59,7 +59,7 @@
           .from("favorites")
           .delete()
           .eq("uid", $user.id)
-          .eq("movie_id", modalMovieID);
+          .eq("movie_id", $modalMovieID);
 
         if (error) throw error;
         isFavorite = false;

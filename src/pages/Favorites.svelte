@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { user, route } from "../stores.js"; 
+  import { user, route } from "../stores.js";
   import { fetchFavoritesData } from "../utils/supabaseFetchers.mjs";
   import MovieCard from "../lib/MovieCard.svelte";
 
@@ -32,38 +32,36 @@
     route.set("#login");
   }
 
-  
   // fetch data on component mount
   onMount(fetchFavorites);
-
 </script>
 
 <div id="favorites-container">
-<!-- Display Content Based on State -->
-{#if !$user}
-  <div class="login-message">
-    <p>You must be logged in to see your favorites.</p>
-    <button class="login-button" on:click={navigateToLogin}
-      >Log In / Sign Up</button
-    >
-  </div>
-{:else if message}
-  <p class="favorites-message">{message}</p>
-{:else}
-  <h2>Favorites</h2>
+  <!-- Display Content Based on State -->
+  {#if !$user}
+    <div class="login-message">
+      <p>You must be logged in to see your favorites.</p>
+      <button class="login-button" on:click={navigateToLogin}
+        >Log In / Sign Up</button
+      >
+    </div>
+  {:else if message}
+    <p class="favorites-message">{message}</p>
+  {:else}
+    <h2>Favorites</h2>
     <ul class="movie-list">
       {#each favorites as movie}
         <li class="movie-item">
-          <MovieCard {movie}/>
+          <MovieCard {movie} />
         </li>
       {/each}
     </ul>
-{/if}
+  {/if}
 </div>
 
 <style>
   #favorites-container {
-      margin-top: 60px;
+    margin-top: 60px;
   }
   .favorites-message,
   .login-message {

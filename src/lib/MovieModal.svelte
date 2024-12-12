@@ -197,6 +197,8 @@
     max-height: 90vh;
     overflow-y: scroll;
     border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
   }
 
   .modal-content {
@@ -204,8 +206,6 @@
     border-radius: 8px;
     position: relative;
     padding: 2rem;
-    max-width: 600px;
-    width: 90%;
   }
 
   .movie-card-grid {

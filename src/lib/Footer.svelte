@@ -1,6 +1,11 @@
 <footer>
     <a class="git" href="https://github.com/uplandwave/PixelWrangler">Repo</a>
-    <span>Streaming data powered by <a href="Watchmode.com">Watchmode.com</a></span>
+    <span
+        >Streaming data powered by <a
+            href="https://www.watchmode.com/"
+            target="_blank">Watchmode.com</a
+        ></span
+    >
 </footer>
 
 <style>
@@ -20,7 +25,7 @@
         /* border-top: .5px solid var(--Accent_3); */
     }
 
-    a:link, 
+    a:link,
     a:visited {
         color: var(--text-color);
         text-decoration: none;

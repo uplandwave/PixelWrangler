@@ -3,6 +3,7 @@
   import { showModal, modalMovieID } from "../stores.js";
 
   function openModal() {
+    console.log("here");
     $modalMovieID = movie.id;
     $showModal = true;
   }

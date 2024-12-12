@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { getTitleDetails } from "../utils/external-services.mjs";
+  import { getTitleDetails } from "../../utils/external-services.mjs";
 
   export let movieId;
 

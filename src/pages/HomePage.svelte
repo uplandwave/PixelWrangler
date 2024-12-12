@@ -1,14 +1,11 @@
 <script>
   import MovieCarousel from "../lib/MovieCarousel.svelte";
   import HeroCarousel from "../lib/HeroCarousel.svelte";
-  import MovieSummaryCard from "./MovieModal.svelte";
   import movieData from "../movieData.json";
   import { fetchFavoritesData } from "../utils/supabaseFetchers.mjs";
   import { user, route } from "../stores.js";
 
   let favorites = [];
-  let showModal = false;
-  let variableMovieID = ""; 
 
   const { newMovies, recommendedMovies } = movieData;
 

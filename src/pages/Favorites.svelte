@@ -1,11 +1,11 @@
 <script>
   import { onMount } from "svelte";
-  import { user, route } from "../stores.js";
-  import { fetchFavoritesData } from "../utils/supabaseFetchers.mjs";
+  import { user, route, favorites } from "../stores.js";
+  import { updateFavoritesStore } from "../utils/supabaseFetchers.mjs";
   import MovieCard from "../lib/MovieCard.svelte";
 
-  let favorites = [];
   let message = "";
+  let favoritesPromise;
 
   // fetch Favorites from Supabase table
   async function fetchFavorites() {
@@ -15,12 +15,7 @@
     }
 
     try {
-      favorites = await fetchFavoritesData($user.id);
-
-      if (favorites.length === 0) {
-        message = "Start adding favorites!";
-        return;
-      }
+      favoritesPromise = updateFavoritesStore($user.id);
     } catch (error) {
       console.error("Unexpected error:", error);
       message = "Failed to load favorites.";
@@ -45,17 +40,23 @@
         >Log In / Sign Up</button
       >
     </div>
-  {:else if message}
-    <p class="favorites-message">{message}</p>
   {:else}
-    <h2>Favorites</h2>
-    <ul class="movie-list">
-      {#each favorites as movie}
-        <li class="movie-item">
-          <MovieCard {movie} />
-        </li>
-      {/each}
-    </ul>
+    {#await favoritesPromise}
+      <p class="favorites-message">Loading...</p>
+    {:then confirmation}
+      {#if $favorites.length === 0}
+        <p class="favorites-message">Start adding favorites!</p>
+      {:else}
+        <h2>Favorites</h2>
+        <ul class="movie-list">
+          {#each $favorites as movie}
+            <li class="movie-item">
+              <MovieCard {movie} />
+            </li>
+          {/each}
+        </ul>
+      {/if}
+    {/await}
   {/if}
 </div>
 

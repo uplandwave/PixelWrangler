@@ -2,9 +2,9 @@
   import MovieCarousel from "../lib/MovieCarousel.svelte";
   import HeroCarousel from "../lib/HeroCarousel.svelte";
   import movieData from "../movieData.json";
-  import { fetchFavoritesData } from "../utils/supabaseFetchers.mjs";
+  import { updateFavoritesStore } from "../utils/supabaseFetchers.mjs";
   import { getNewReleases } from "../utils/external-services.mjs";
-  import { user, route } from "../stores.js";
+  import { user, route, favorites } from "../stores.js";
 
   const recommendedMovies = movieData.recommendedMovies;
 
@@ -23,7 +23,7 @@
   }
 
   // Fetch data when the page loads
-  let favoritesPromise = $user ? fetchFavoritesData($user.id) : null;
+  let favoritesPromise = $user ? updateFavoritesStore($user.id) : null;
   let newMoviesPromise = loadNewMovies();
 </script>
 
@@ -51,10 +51,10 @@
 {:else}
   {#await favoritesPromise}
     Loading...
-  {:then favorites}
-    {#if favorites.length > 0}
+  {:then confirmation}
+    {#if $favorites.length > 0}
       <!-- Favorites available -->
-      <MovieCarousel movies={favorites} />
+      <MovieCarousel movies={$favorites} />
     {:else}
       <!-- No favorites yet -->
       <div id="add-favorites-message">

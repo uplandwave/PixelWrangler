@@ -4,6 +4,7 @@
   import { user } from "../stores.js";
   import { getTitleDetails } from "../utils/external-services.mjs";
   import { modalMovieID, showModal } from "../stores";
+  import { updateFavoritesStore } from "../utils/supabaseFetchers.mjs";
 
   let movieDetails = null;
   let message = "";
@@ -83,6 +84,7 @@
         isFavorite = true;
         message = "Movie added to favorites.";
       }
+      updateFavoritesStore();
     } catch (error) {
       console.error("Error updating favorites:", error);
       message = "An unexpected error occurred.";

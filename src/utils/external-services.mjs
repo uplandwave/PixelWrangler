@@ -66,6 +66,25 @@ export async function getTitleDetailsAndSources(id) {
   }
 }
 
+/** 
+* "Get a listing of recently released or coming soon releases on the major streaming services." 
+* @summary "Get a listing of recently released or coming soon releases on the major streaming services. 
+* Only major services and US releases dates included, however most of the major services 
+* (Netflix, Hulu, etc) release original content on the same days in all countries they support."
+* (quotes from: https://api.watchmode.com/docs/#title)
+* @param {Number} limit "Set how many release dates to return, default is..." 12 (quote from: https://api.watchmode.com/docs/#title)
+* @return {Promise}
+*/
+export async function getNewReleases(limit = 12) {
+  try {
+    const response = await fetch(`https://api.watchmode.com/v1/releases/?apiKey=${API_KEY}&limit=${limit}`)
+    const data = await response.json()
+    return data.releases
+  } catch (error) {
+    console.error("getNewReleases - " + error)
+  }
+}
+
 export async function getListOfRandomMovies() {
   try {
     const response = await fetch(`https://api.watchmode.com/v1/list-titles/?apiKey=${API_KEY}&source_ids=203,57`)

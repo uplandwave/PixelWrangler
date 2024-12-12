@@ -65,3 +65,6 @@ We plan to use **OMDb API, IMDb API, TasteDive API, Watchmode API, JustWatch API
 
 ---
 
+#### Credit
+* file: "/src/movieData.json" contains data from Watchmode.com
+---

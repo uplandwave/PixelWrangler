@@ -3,16 +3,17 @@
   import HeroCarousel from "../lib/HeroCarousel.svelte";
   import movieData from "../movieData.json";
   import { fetchFavoritesData } from "../utils/supabaseFetchers.mjs";
+  import { getNewReleases } from "../utils/external-services.mjs";
   import { user, route } from "../stores.js";
 
-  let favorites = [];
+  const recommendedMovies = movieData.recommendedMovies;
 
-  const { newMovies, recommendedMovies } = movieData;
-
-  // Fetch favorites when the page loads
-  async function loadFavorites() {
-    if ($user) {
-      favorites = await fetchFavoritesData($user.id);
+  async function loadNewMovies() {
+    if (import.meta.env.VITE_MODE === "production") {
+      return getNewReleases();
+    } else {
+      // in development mode
+      return movieData.newMovies;
     }
   }
 
@@ -21,15 +22,23 @@
     route.set("#login");
   }
 
-  loadFavorites();
+  // Fetch data when the page loads
+  let favoritesPromise = $user ? fetchFavoritesData($user.id) : null;
+  let newMoviesPromise = loadNewMovies();
 </script>
 
 <HeroCarousel />
 
-<h2>New</h2>
-<MovieCarousel movies={newMovies} />
+<h2>New or Coming Soon</h2>
+{#await newMoviesPromise}
+  Loading...
+{:then newMovies}
+  <MovieCarousel movies={newMovies} />
+{/await}
+
 <h2>Recommended</h2>
 <MovieCarousel movies={recommendedMovies} />
+
 <h2>Favorites</h2>
 {#if !$user}
   <!-- User not logged in -->
@@ -39,14 +48,20 @@
       >Log In / Sign Up</button
     >
   </div>
-{:else if favorites.length > 0}
-  <!-- Favorites available -->
-  <MovieCarousel movies={favorites} />
 {:else}
-  <!-- No favorites yet -->
-  <div id="add-favorites-message">
-    You don't have any favorites yet. Start adding movies!
-  </div>
+  {#await favoritesPromise}
+    Loading...
+  {:then favorites}
+    {#if favorites.length > 0}
+      <!-- Favorites available -->
+      <MovieCarousel movies={favorites} />
+    {:else}
+      <!-- No favorites yet -->
+      <div id="add-favorites-message">
+        You don't have any favorites yet. Start adding movies!
+      </div>
+    {/if}
+  {/await}
 {/if}
 
 <style>

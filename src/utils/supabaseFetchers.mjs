@@ -23,3 +23,14 @@ export async function updateFavoritesStore(userId) {
     favorites.set(modData)
     return true
 }
+
+// using code from Bro. Thompson
+export async function fetchSessionUser() {
+    const res = await supabase.auth.getSession()
+    console.log(res)
+    if (res.data.session) {
+        return res.data.session.user
+    } else {
+        return null
+    }
+}
